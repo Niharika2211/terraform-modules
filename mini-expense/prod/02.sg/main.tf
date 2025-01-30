@@ -202,7 +202,7 @@ resource "aws_security_group_rule" "internal_lb_frontend" {
 # bastion rules
 
 resource "aws_security_group_rule" "anywhere_bastion" {
-  description = "allow traffic from 22 from anywhere"
+  description       = "allow traffic from 22 from anywhere"
   type              = "ingress"
   from_port         = 22
   to_port           = 22
@@ -225,7 +225,7 @@ resource "aws_security_group_rule" "anywhere_http_external_lb" {
 }
 
 resource "aws_security_group_rule" "anywhere_https_external_lb" {
-  description = "allow traffic form 443 from anywhere"
+  description       = "allow traffic form 443 from anywhere"
   type              = "ingress"
   from_port         = 443
   to_port           = 443

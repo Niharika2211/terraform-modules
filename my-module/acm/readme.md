@@ -79,5 +79,3 @@ This module is open-source and available under the **MIT License**.
 Developed by **Niharika** for AWS DevOps automation.
 
 ---
-
-This README format includes icons to visually differentiate sections, making it more engaging and easy to navigate. If you'd like further adjustments or have more specific preferences, let me know!

@@ -68,3 +68,10 @@ variable "vpc_id" {
   type        = string
   default     = ""
 }
+
+variable "aws_vpc_peering_connection" {
+  description = "peering connection."
+  type        = string
+  default     = ""
+
+}

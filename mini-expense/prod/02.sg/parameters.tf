@@ -40,3 +40,5 @@ resource "aws_ssm_parameter" "frontend" {
   value = module.frontend.sg_id
 }
 
+
+

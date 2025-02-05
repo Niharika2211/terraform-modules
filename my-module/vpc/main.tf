@@ -88,16 +88,6 @@ resource "aws_db_subnet_group" "default" {
   )
 }
 
-# resource "aws_route_table" "new_route_table" {
-#   vpc_id = aws_vpc.new.id
-
-#   tags = merge(
-#     {
-#       Name = "${local.name}-new-route-table"
-#     },
-#     var.common_tags
-#   )
-# }
 
 resource "aws_route_table" "RT" {
   vpc_id = aws_vpc.new.id
@@ -150,31 +140,31 @@ resource "aws_route_table_association" "db_rta" {
 }
 
 
-# resource "aws_eip" "mip" {
-#   count  = var.nat_enable ? 1 : 0
-#   domain = "vpc"
-#   tags = merge(
-#     {
-#       Name = local.name
-#     },
-#     var.common_tags
-#   )
-# }
+resource "aws_eip" "mip" {
+  count  = var.nat_enable ? 1 : 0
+  domain = "vpc"
+  tags = merge(
+    {
+      Name = local.name
+    },
+    var.common_tags
+  )
+}
 
-# resource "aws_nat_gateway" "mini_nat" {
-#   count         = var.nat_enable ? 1 : 0
-#   allocation_id = aws_eip.mip[count.index].id
-#   subnet_id     = aws_subnet.pub-sub[0].id
+resource "aws_nat_gateway" "mini_nat" {
+  count         = var.nat_enable ? 1 : 0
+  allocation_id = aws_eip.mip[count.index].id
+  subnet_id     = aws_subnet.pub-sub[0].id
 
-#   tags = merge({
-#     Name = local.name
-#     },
-#   var.common_tags)
+  tags = merge({
+    Name = local.name
+    },
+  var.common_tags)
 
-#   # To ensure proper ordering, it is recommended to add an explicit dependency
-#   # on the Internet Gateway for the VPC.
-#   depends_on = [aws_internet_gateway.igw]
-# }
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  # on the Internet Gateway for the VPC.
+  depends_on = [aws_internet_gateway.igw]
+}
 
 
 resource "aws_route" "public" {
@@ -183,52 +173,56 @@ resource "aws_route" "public" {
   gateway_id             = aws_internet_gateway.igw.id
 }
 
-# resource "aws_route" "private" {
-#   count                  = var.nat_enable ? 1 : 0
-#   route_table_id         = aws_route_table.private-RT.id
-#   destination_cidr_block = "0.0.0.0/0"
-#    nat_gateway_id           = aws_nat_gateway.mini_nat[count.index].id
-# }
+resource "aws_route" "private" {
+  count                  = var.nat_enable ? 1 : 0
+  route_table_id         = aws_route_table.private-RT.id
+  destination_cidr_block = "0.0.0.0/0"
+   nat_gateway_id           = aws_nat_gateway.mini_nat[count.index].id
+}
 
-# resource "aws_route" "db" {
-#   count                  = var.nat_enable ? 1 : 0
-#   route_table_id         = aws_route_table.db-RT.id
-#   destination_cidr_block = "0.0.0.0/0"
-#    nat_gateway_id            = aws_nat_gateway.mini_nat[count.index].id
-# }
+resource "aws_route" "db" {
+  count                  = var.nat_enable ? 1 : 0
+  route_table_id         = aws_route_table.db-RT.id
+  destination_cidr_block = "0.0.0.0/0"
+   nat_gateway_id            = aws_nat_gateway.mini_nat[count.index].id
+}
 
-# resource "aws_vpc_peering_connection" "foo-peer" {
-#   peer_vpc_id = data.aws_vpc.selected.id
-#   auto_accept = "true"
-#   vpc_id      = aws_vpc.new.id
+resource "aws_vpc_peering_connection" "foo-peer" {
+  count = var.aws_vpc_peering_connection ? 1 : 0
+  peer_vpc_id = data.aws_vpc.selected.id
+  auto_accept = "true"
+  vpc_id      = aws_vpc.new.id
 
-#   tags = merge(
-#     {
-#       Name = local.name
-#     },
-#     var.common_tags
-#   )
-# }
+  tags = merge(
+    {
+      Name = local.name
+    },
+    var.common_tags
+  )
+}
 
-# resource "aws_route" "pub_route" {
-#   route_table_id            = aws_route_table.RT.id
-#   destination_cidr_block    = data.aws_vpc.selected.cidr_block
-#   vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer.id
-# }
-
-
-# resource "aws_route" "pvt_route" {
-#   route_table_id            = aws_route_table.private-RT.id
-#   destination_cidr_block    = data.aws_vpc.selected.cidr_block
-#   vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer.id
-# }
+resource "aws_route" "pub_route" {
+  count = var.aws_vpc_peering_connection ? 1 : 0
+  route_table_id            = aws_route_table.RT.id
+  destination_cidr_block    = data.aws_vpc.selected.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer[count.index].id
+}
 
 
-# resource "aws_route" "db_route" {
-#   route_table_id            = aws_route_table.db-RT.id
-#   destination_cidr_block    = data.aws_vpc.selected.cidr_block
-#   vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer.id
-# }
+resource "aws_route" "pvt_route" {
+  count = var.aws_vpc_peering_connection ? 1 : 0
+  route_table_id            = aws_route_table.private-RT.id
+  destination_cidr_block    = data.aws_vpc.selected.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer[count.index].id
+}
+
+
+resource "aws_route" "db_route" {
+  count = var.aws_vpc_peering_connection ? 1 : 0
+  route_table_id            = aws_route_table.db-RT.id
+  destination_cidr_block    = data.aws_vpc.selected.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.foo-peer[count.index].id
+}
 
 # resource "aws_route" "default_route" {
 #   route_table_id            = aws_route_table.new_route_table.id

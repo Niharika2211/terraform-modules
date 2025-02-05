@@ -3,7 +3,7 @@ locals {
   vpn_sg      = data.aws_ssm_parameter.vpn_sg.value
   amazon_ami  = data.aws_ami.amazon_linux.id
   opnevpn_ami = data.aws_ami.opnevpn.id
-  pub_sub_ids = element(split(",", data.aws_ssm_parameter.pub_sub_ids.value),0)
+  pub_sub_ids = element(split(",", data.aws_ssm_parameter.pub_sub_ids.value), 0)
 }
 
 module "instance_bastion" {
@@ -17,12 +17,12 @@ module "instance_bastion" {
   subnet_id              = local.pub_sub_ids
   vpc_security_group_ids = [local.bastion_sg]
   common_tags = {
-  Terraform   = "true"
-  Author      = "Niha bapatla"
-  Component   = "bastion"
-  Project     = "Expense"
-  envirnoment = "PROD"
-}
+    Terraform   = "true"
+    Author      = "Niha bapatla"
+    Component   = "bastion"
+    Project     = "Expense"
+    envirnoment = "PROD"
+  }
 
 }
 
@@ -37,11 +37,11 @@ module "instance_vpn" {
   subnet_id              = local.pub_sub_ids
   vpc_security_group_ids = [local.vpn_sg]
   common_tags = {
-  Terraform   = "true"
-  Author      = "Niha bapatla"
-  Component   = "vpn"
-  Project     = "Expense"
-  envirnoment = "PROD"
-}
+    Terraform   = "true"
+    Author      = "Niha bapatla"
+    Component   = "vpn"
+    Project     = "Expense"
+    envirnoment = "PROD"
+  }
 
 }

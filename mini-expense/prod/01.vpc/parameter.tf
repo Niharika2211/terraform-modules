@@ -27,8 +27,8 @@ resource "aws_ssm_parameter" "db_sub_ids" {
 
 }
 
-# resource "aws_ssm_parameter" "db_subnet_group" {
-#   name  = "/${var.envirnoment}/${var.project-name}/db-subnet-group"
-#   type  = "String"
-#   value = module.mini_vpc.db_subnet_group
-# }
+resource "aws_ssm_parameter" "db_subnet_group" {
+  name  = "/${var.envirnoment}/${var.project-name}/db-subnet-group"
+  type  = "String"
+  value = module.mini_vpc.db_subnet_group_name
+}

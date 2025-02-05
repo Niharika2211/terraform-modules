@@ -1,16 +1,9 @@
-# Terraform AWS EC2 & RDS Modules
+# Terraform AWS RDS Module
 
 ## Overview
-This Terraform repository provisions AWS EC2 and RDS instances with configurable settings. It allows users to deploy virtual machines and managed databases efficiently while ensuring modularity and reusability.
+This Terraform module provisions an AWS RDS instance with configurable settings. It enables users to deploy a managed relational database efficiently while ensuring modularity and reusability.
 
 ## Features
-### EC2 Module
-- Creates an EC2 instance with a specified AMI and instance type
-- Supports key pair association for SSH access
-- Attaches the instance to a specified subnet and security groups
-- Uses tagging for better resource identification
-
-### RDS Module
 - Provisions an RDS instance with a configurable database engine and version
 - Supports subnet groups and security groups
 - Allows enabling/disabling final snapshots on deletion
@@ -21,30 +14,9 @@ Before using this module, ensure that you have:
 - Terraform installed (v1.0+ recommended)
 - AWS CLI configured with appropriate permissions
 - A VPC with subnets and security groups
-- A valid AWS key pair for SSH access (for EC2)
-- Subnet group created for RDS
+- A subnet group created for RDS
 
 ## Usage
-### EC2 Deployment
-```hcl
-module "ec2" {
-  source                 = "./modules/ec2"
-  envirnoment            = "dev"
-  project_name           = "myproject"
-  instance_name          = "web-server"
-  ami                    = "ami-12345678"
-  instance_type          = "t2.micro"
-  key_name               = "my-key-pair"
-  subnet_id              = "subnet-0123456789abcdef0"
-  vpc_security_group_ids = ["sg-0123456789abcdef0"]
-  common_tags = {
-    Owner      = "DevOps Team"
-    ManagedBy  = "Terraform"
-  }
-}
-```
-
-### RDS Deployment
 ```hcl
 module "rds" {
   source                 = "./modules/rds"
@@ -69,20 +41,6 @@ module "rds" {
 ```
 
 ## Inputs
-### EC2 Inputs
-| Variable                  | Type          | Description |
-|---------------------------|--------------|-------------|
-| envirnoment               | string       | Deployment environment (e.g., dev, prod). |
-| project_name              | string       | Name of the project. |
-| instance_name             | string       | Name of the instance. |
-| ami                       | string       | Amazon Machine Image (AMI) ID. |
-| instance_type             | string       | EC2 instance type (e.g., t2.micro). |
-| key_name                  | string       | Key pair name for SSH access. |
-| subnet_id                 | string       | Subnet ID where the instance will be deployed. |
-| vpc_security_group_ids    | list(string) | List of security group IDs associated with the instance. |
-| common_tags               | map(string)  | Tags applied to all resources. |
-
-### RDS Inputs
 | Variable                  | Type          | Description |
 |---------------------------|--------------|-------------|
 | envirnoment               | string       | Deployment environment (e.g., dev, prod). |
@@ -101,13 +59,6 @@ module "rds" {
 | common_tags               | map(string)  | Tags applied to all resources. |
 
 ## Outputs
-### EC2 Outputs
-| Output       | Description |
-|-------------|-------------|
-| public_ip   | Public IP of the EC2 instance |
-| private_ip  | Private IP of the EC2 instance |
-
-### RDS Outputs
 | Output          | Description |
 |----------------|-------------|
 | aws_db_instance | Endpoint address of the RDS instance |

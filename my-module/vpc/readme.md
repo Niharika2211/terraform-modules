@@ -1,22 +1,22 @@
-# Terraform AWS VPC Module
+# 🚀 Terraform AWS VPC Module
 
-## Overview
-This Terraform module provisions an AWS Virtual Private Cloud (VPC) with associated subnets, route tables, NAT gateway, and optional VPC peering.
+## 📌 Overview
+This Terraform module provisions an **AWS Virtual Private Cloud (VPC)** with associated **subnets, route tables, NAT gateway, and optional VPC peering**.
 
-## Features
-- Creates a new VPC with configurable CIDR range
-- Provisions public, private, and database subnets
-- Configures an internet gateway and NAT gateway (optional)
-- Supports VPC peering connection (optional)
-- Associates subnets with appropriate route tables
-- Enables DNS hostname resolution
+## 🌟 Features
+✅ Creates a new VPC with configurable CIDR range  
+✅ Provisions **public, private, and database** subnets  
+✅ Configures **Internet Gateway** and optional **NAT Gateway**  
+✅ Supports **VPC Peering Connection** (optional)  
+✅ Associates subnets with appropriate **Route Tables**  
+✅ Enables **DNS Hostname Resolution**  
 
-## Prerequisites
+## 📌 Prerequisites
 Before using this module, ensure that you have:
-- Terraform installed (v1.0+ recommended)
-- AWS CLI configured with appropriate permissions
+- ⚙️ **Terraform** installed (**v1.0+** recommended)
+- 🔑 **AWS CLI** configured with appropriate permissions
 
-## Usage
+## 🔧 Usage
 ```hcl
 module "vpc" {
   source            = "./modules/vpc"
@@ -37,8 +37,8 @@ module "vpc" {
 }
 ```
 
-## Inputs
-| Variable                  | Type         | Description |
+## 📥 Inputs
+| 🔹 Variable                  | 🔍 Type         | 📝 Description |
 |---------------------------|-------------|-------------|
 | envirnoment               | string      | Deployment environment (e.g., dev, prod). |
 | project-name              | string      | Name of the project. |
@@ -52,8 +52,8 @@ module "vpc" {
 | aws_vpc_peering_connection | bool       | Enable VPC peering connection. |
 | common_tags               | map(any)    | Tags applied to all resources. |
 
-## Outputs
-| Output  | Description |
+## 📤 Outputs
+| 🔹 Output  | 📝 Description |
 |---------|-------------|
 | vpc_id  | ID of the created VPC. |
 | vpc_arn | ARN of the created VPC. |
@@ -62,29 +62,29 @@ module "vpc" {
 | db-sub-id | IDs of the database subnets. |
 | db_subnet_group_name | Name of the database subnet group. |
 
-## Deployment
-1. Initialize Terraform:
+## 🚀 Deployment
+1️⃣ Initialize Terraform:  
    ```sh
    terraform init
    ```
-2. Plan the deployment:
+2️⃣ Plan the deployment:  
    ```sh
    terraform plan
    ```
-3. Apply the configuration:
+3️⃣ Apply the configuration:  
    ```sh
    terraform apply -auto-approve
    ```
 
-## Cleanup
-To destroy the resources, run:
+## 🧹 Cleanup
+To destroy the resources, run:  
 ```sh
 terraform destroy -auto-approve
 ```
 
-## License
-This module is open-source and available under the MIT License.
+## 📜 License
+This module is open-source and available under the **MIT License**.
 
-## Author
-Developed by Niharika for AWS DevOps automation.
+## 👩‍💻 Author
+Developed by **Niharika** for **AWS DevOps Automation**. 🚀
 

@@ -1,26 +1,27 @@
-# Terraform AWS Security Group Module
 
-## Overview
+# 🛡️ Terraform AWS Security Group Module
+
+## 📜 Overview
 This Terraform module provisions an AWS Security Group with configurable ingress rules, egress rules, and tagging for improved resource management.
 
-## Features
-- Creates a security group with a specified name and description
-- Supports dynamic ingress rules configuration
-- Allows outbound (egress) access to all destinations
-- Uses tagging for better resource identification
+## 🔧 Features
+- 🛠️ **Create a security group** with a specified name and description
+- 🔥 **Dynamic ingress rules configuration** to manage inbound traffic
+- 🚪 **Allows outbound (egress) access** to all destinations
+- 🏷️ **Uses tagging** for better resource identification and management
 
-## Prerequisites
-Before using this module, ensure that you have:
-- Terraform installed (v1.0+ recommended)
-- AWS CLI configured with appropriate permissions
-- A VPC where the security group will be created
+## 📋 Prerequisites
+Before using this module, ensure you have:
+- ⚙️ **Terraform** installed (v1.0+ recommended)
+- 🛠️ **AWS CLI** configured with appropriate permissions
+- 🌐 A **VPC** where the security group will be created
 
-## Usage
+## 💻 Usage
 ```hcl
 module "security_group" {
   source          = "./modules/security_group"
-  envirnoment     = "dev"
-  project-name    = "myproject"
+  environment     = "dev"
+  project_name    = "myproject"
   sg_name         = "my-security-group"
   sg_description  = "Allow necessary inbound traffic"
   vpc_id          = "vpc-12345678"
@@ -49,45 +50,48 @@ module "security_group" {
 }
 ```
 
-## Inputs
-| Variable                | Type          | Description |
-|-------------------------|--------------|-------------|
-| envirnoment             | string       | Deployment environment (e.g., dev, prod). |
-| project-name            | string       | Name of the project. |
-| sg_name                 | string       | Name of the security group. |
-| sg_description          | string       | Description of the security group. |
-| vpc_id                  | string       | ID of the VPC where the security group is created. |
-| ingress_rules           | list(object) | List of ingress rules (port, protocol, CIDR blocks). |
-| common_tags             | map(any)     | Tags applied to all resources. |
+## 📝 Inputs
+| Variable            | Type          | Description |
+|---------------------|---------------|-------------|
+| 🌍 **environment**   | string        | Deployment environment (e.g., dev, prod). |
+| 📂 **project_name**  | string        | Name of the project. |
+| 🛡️ **sg_name**       | string        | Name of the security group. |
+| 📝 **sg_description**| string        | Description of the security group. |
+| 🌐 **vpc_id**        | string        | ID of the VPC where the security group is created. |
+| 🚪 **ingress_rules** | list(object)  | List of ingress rules (port, protocol, CIDR blocks). |
+| 🏷️ **common_tags**   | map(any)      | Tags applied to all resources. |
 
-## Outputs
-| Output  | Description |
-|---------|-------------|
-| sg_id   | ID of the created security group |
+## 📦 Outputs
+| Output   | Description |
+|----------|-------------|
+| 🛡️ **sg_id**  | ID of the created security group |
 
-## Deployment
-1. Initialize Terraform:
+## 🚀 Deployment
+1. **Initialize Terraform:**
    ```sh
    terraform init
    ```
-2. Plan the deployment:
+2. **Plan the deployment:**
    ```sh
    terraform plan
    ```
-3. Apply the configuration:
+3. **Apply the configuration:**
    ```sh
    terraform apply -auto-approve
    ```
 
-## Cleanup
+## 🧹 Cleanup
 To destroy the resources, run:
 ```sh
 terraform destroy -auto-approve
 ```
 
-## License
-This module is open-source and available under the MIT License.
+## 📝 License
+This module is open-source and available under the **MIT License**.
 
-## Author
-Developed by Niharika for AWS DevOps automation.
+## 👩‍💻 Author
+Developed by **Niharika** for AWS DevOps automation.
 
+---
+
+This format includes icons for various sections to make it visually appealing and easier to follow. If you have any specific icons you'd like to use or further adjustments, let me know!

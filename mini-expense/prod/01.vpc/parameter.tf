@@ -2,7 +2,6 @@ resource "aws_ssm_parameter" "mini_vpc" {
   name  = "${var.envirnoment}-${var.project-name}-vpc"
   type  = "String"
   value = module.mini_vpc.vpc_id
-
 }
 
 resource "aws_ssm_parameter" "pub_sub_ids" {

@@ -9,11 +9,10 @@ data "aws_ssm_parameter" "pvt_sub_ids" {
 
 
 data "aws_ssm_parameter" "external_lb" {
-  name  = "${var.envirnoment}-${var.project_name}-external-sg"
+  name = "${var.envirnoment}-${var.project_name}-external-sg"
 
 }
 
 data "aws_ssm_parameter" "internal_lb" {
-  name  = "${var.envirnoment}-${var.project_name}-internal-sg"
-
+  name = "${var.envirnoment}-${var.project_name}-internal-sg"
 }

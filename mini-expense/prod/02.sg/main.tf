@@ -190,12 +190,12 @@ resource "aws_security_group_rule" "vpn_frontend" {
   security_group_id        = module.frontend.sg_id
 }
 
-resource "aws_security_group_rule" "internal_lb_frontend" {
+resource "aws_security_group_rule" "external_lb_frontend" {
   type                     = "ingress"
   from_port                = 80
   to_port                  = 80
   protocol                 = "tcp"
-  source_security_group_id = module.internal_lb.sg_id
+  source_security_group_id = module.external_lb.sg_id
   security_group_id        = module.frontend.sg_id
 }
 

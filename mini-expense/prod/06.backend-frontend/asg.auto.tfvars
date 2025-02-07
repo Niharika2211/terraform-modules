@@ -1,0 +1,5 @@
+envirnoment   = "prod"
+project_name  = "expense"
+instance_type = "t3.micro"
+zone_name     = "nirvanan.online"
+key_name      = "nirvanan.online"

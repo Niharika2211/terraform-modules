@@ -94,4 +94,3 @@ Developed by **Niharika** for AWS DevOps automation.
 
 ---
 
-This format includes icons for various sections to make it visually appealing and easier to follow. If you have any specific icons you'd like to use or further adjustments, let me know!

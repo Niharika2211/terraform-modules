@@ -100,5 +100,8 @@ terraform destroy -auto-approve
 - 🛠️ Replace variable values in a `.tfvars` file or provide them via CLI.
 - 🔄 Modify `priority` in the listener rule if using multiple rules.
 
-📧 **For questions or issues, feel free to reach out!** 🚀
 
+## Author
+Developed by Niharika for AWS DevOps automation.
+
+📧 **For questions or issues, feel free to reach out!** 🚀

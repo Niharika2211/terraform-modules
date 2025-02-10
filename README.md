@@ -2,7 +2,6 @@
 
 [![Terraform](https://img.shields.io/badge/Terraform-v1.x-623CE4?style=for-the-badge&logo=terraform)](https://www.terraform.io/)
 [![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
-[![License](https://img.shields.io/github/license/yourusername/terraform-modules?style=for-the-badge)](LICENSE)
 
 ## 📌 Overview
 Terraform is an Infrastructure as Code (IaC) tool that allows you to define, provision, and manage cloud resources efficiently using declarative configuration files. This repository contains reusable **Terraform modules** to simplify and standardize infrastructure provisioning. Each module is designed for efficiency, security, and scalability.

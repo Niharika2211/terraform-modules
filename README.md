@@ -77,9 +77,6 @@ Each module has its own README with usage instructions, inputs, and outputs. Che
 ## 🤝 Contributing
 We welcome contributions! Feel free to submit issues or pull requests.
 
-## 📜 License
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 🌟 **Star this repo if you find it useful!**
 
